@@ -110,14 +110,14 @@ public class RadioTest {
     }
 
     @Test
-    public void testLimitValueOnCurrentVolumeAfter10() {
+    public void testLimitValueOnCurrentVolumeAfter100() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(11);
+        radio.setCurrentVolume(100);
 
         radio.increaseVolume();
 
         int actual = radio.getCurrentVolume();
-        int expected = 1;
+        int expected = 100;
 
         Assertions.assertEquals(actual, expected);
     }
@@ -125,12 +125,12 @@ public class RadioTest {
     @Test
     public void testUnchangedVolumeOnIncrease() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(101);
 
         radio.increaseVolume();
 
         int actual = radio.getCurrentVolume();
-        int expected = 10;
+        int expected = 1;
 
         Assertions.assertEquals(actual, expected);
     }
@@ -144,6 +144,17 @@ public class RadioTest {
 
         int actual = radio.getCurrentVolume();
         int expected = 0;
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testSelectedStation() {
+        Radio radio = new Radio(9);
+        radio.setCurrentStation(8);
+
+        int actual = radio.getCurrentStation();
+        int expected = 8;
 
         Assertions.assertEquals(actual, expected);
     }
